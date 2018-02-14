@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  FOR and WHILE loops.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Hailey Heidecker.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -134,6 +134,19 @@ def run_test_practice_problem3():
     # SUGGESTION: Ask an assistant to CHECK your tests to confirm
     #             that they are adequate tests!
     ####################################################################
+    # test 1
+    actual = practice_problem3(-2, 2, 1.3)
+    expected = [1, 7]
+    print('Test 1:')
+    print('Actual: ', actual)
+    print('Expected: ', expected)
+
+    # test 1
+    actual = practice_problem3(-3, 6, -1.0)
+    expected = [-1, 0, 1, 2, 3, 5]
+    print('Test 2:')
+    print('Actual: ', actual)
+    print('Expected: ', expected)
 
 
 def practice_problem3(start, n, threshold):
@@ -216,6 +229,11 @@ def practice_problem3(start, n, threshold):
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   < 15 minutes.
     ####################################################################
+    return_list = []
+    for k in range(start, n + 1):
+        if math.sin(k) + math.cos(k) > threshold:
+            return_list = return_list + [k]
+    return return_list
 
 
 # ----------------------------------------------------------------------
