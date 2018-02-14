@@ -95,7 +95,7 @@ def zero_changer(tuple_of_lists):
                 index.append(j)
 
     for k in range(len(list_index)):
-        tuple_of_lists[list_index[k]][index[k]] = k+1
+        tuple_of_lists[list_index[k]][index[k]] = k + 1
 
 
 # ----------------------------------------------------------------------
