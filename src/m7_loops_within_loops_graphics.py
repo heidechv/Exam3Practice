@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in 2D GRAPHICS problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Hailey Heidecker.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -29,6 +29,7 @@ Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
 ########################################################################
 
 import rosegraphics as rg
+import math
 
 
 def main():
@@ -89,7 +90,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -101,6 +102,38 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+    x = point.x
+    y1 = point.y
+    y2 = point.y
+    r = radius
+
+    for k in range(n):
+        for j in range(k + 1):
+            circle1 = rg.Circle(rg.Point(x, y1), r)
+            circle1.fill_color = color
+            circle1.attach_to(window)
+
+            circle2 = rg.Circle(rg.Point(x, y2), r)
+            circle2.fill_color = color
+            circle2.attach_to(window)
+
+            start1 = rg.Point(x - r, y1)
+            end1 = rg.Point(x + r, y1)
+            line1 = rg.Line(start1, end1)
+            line1.attach_to(window)
+
+            start2 = rg.Point(x - r, y2)
+            end2 = rg.Point(x + r, y2)
+            line2 = rg.Line(start2, end2)
+            line2.attach_to(window)
+
+            x = x + 2 * r
+
+            window.render()
+
+        x = point.x - ((k + 1) * r)
+        y1 = y1 - (math.sqrt(3) * r)
+        y2 = y2 + (math.sqrt(3) * r)
 
 
 def run_test_many_hourglasses():
@@ -178,7 +211,30 @@ def many_hourglasses(window, square, m, colors):
     #    DIFFICULTY:      7  (assuming that you already have
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
-    # ------------------------------------------------------------------
+    # ------------------------------------------------------------------w
+    radius = square.length_of_each_side/2
+    x1 = square.center.x - radius
+    y1 = square.center.y - radius
+    x2 = square.center.x + radius
+    y2 = square.center.x + radius
+    
+    test_rect = rg.Rectangle(rg.Point(x1, y1), rg.Point(x2, y2))
+    test_rect.attach_to(window)
+
+    for k in range(m):
+        corner1 = rg.Point(x1, y1)
+        corner2 = rg.Point(x2, y2)
+        rectangle = rg.Rectangle(corner1, corner2)
+        rectangle.attach_to(window)
+        hourglass(window, k + 1, rectangle.get_center(), radius, colors[k])
+
+        x1 = x1 + (2 * radius * (k + 1))
+        y1 = y1 - (2 * radius)
+        x2 = x2 + (2 * radius * (k +2))
+        y2 = y2 + (2 * radius)
+
+
+
 
 
 # ----------------------------------------------------------------------
