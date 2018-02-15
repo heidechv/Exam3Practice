@@ -196,7 +196,7 @@ def many_hourglasses(window, square, m, colors):
     each of which denotes a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -212,29 +212,28 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------w
-    radius = square.length_of_each_side/2
-    x1 = square.center.x - radius
-    y1 = square.center.y - radius
-    x2 = square.center.x + radius
-    y2 = square.center.x + radius
-    
-    test_rect = rg.Rectangle(rg.Point(x1, y1), rg.Point(x2, y2))
-    test_rect.attach_to(window)
+    d = square.length_of_each_side
+    r = d/2
+    x1 = square.center.x - r
+    y1 = square.center.y - r
+    x2 = square.center.x + r
+    y2 = square.center.y + r
 
     for k in range(m):
         corner1 = rg.Point(x1, y1)
         corner2 = rg.Point(x2, y2)
+
         rectangle = rg.Rectangle(corner1, corner2)
         rectangle.attach_to(window)
-        hourglass(window, k + 1, rectangle.get_center(), radius, colors[k])
 
-        x1 = x1 + (2 * radius * (k + 1))
-        y1 = y1 - (2 * radius)
-        x2 = x2 + (2 * radius * (k +2))
-        y2 = y2 + (2 * radius)
+        hourglass(window, k + 1, rectangle.get_center(), r, colors[k % len(colors)])
 
+        window.render()
 
-
+        x1 = x1 + (k + 1) * d
+        y1 = y1 - (math.sqrt(3) * r)
+        x2 = x2 + (k + 2) * d
+        y2 = y2 + (math.sqrt(3) * r)
 
 
 # ----------------------------------------------------------------------
