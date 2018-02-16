@@ -45,7 +45,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ####################################################################
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -221,7 +221,7 @@ def practice_problem3(start, n, threshold):
       :type threshold: float
     """
     ####################################################################
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ####################################################################
@@ -229,11 +229,23 @@ def practice_problem3(start, n, threshold):
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   < 15 minutes.
     ####################################################################
-    return_list = []
-    for k in range(start, n + 1):
-        if math.sin(k) + math.cos(k) > threshold:
-            return_list = return_list + [k]
-    return return_list
+
+    newlist = []
+
+    if n == 0:
+        return newlist
+
+    if threshold > math.sqrt(2):
+        for j in range(start, n, 1):
+            newlist = newlist + [j]
+
+    for m in range(start, n*999999999999999):
+        if math.sin(m) + math.cos(m) > threshold:
+            newlist = newlist + [m]
+        if len(newlist) == n:
+            return newlist
+
+    return newlist
 
 
 # ----------------------------------------------------------------------
